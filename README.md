@@ -45,8 +45,8 @@ High denoising values will work and the processed tiles should blend seamlessly.
 If none is selected, it is possible to do an inpainting-only pass.  
 Use an upscaler that doesn't remove too much fine detail.  
 Upscaler Resources:
-&emsp;[](https://phhofm.github.io/upscale/favorites.html)
-&emsp;[](https://upscale.wiki/wiki/Model_Database#Universal_Models)
+&emsp;[https://phhofm.github.io/upscale/favorites.html](https://phhofm.github.io/upscale/favorites.html)
+&emsp;[https://upscale.wiki/wiki/Model_Database#Universal_Models](https://upscale.wiki/wiki/Model_Database#Universal_Models)
 
 ### Minimum Border
 This is the border of the tiles that will be processed.  
