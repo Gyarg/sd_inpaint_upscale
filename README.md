@@ -113,8 +113,8 @@ Downscaling an upscaled image can make it look sharper when comparing 100% crops
 The downscaling percent refers to the perimeter, so a 1024 x 1024 image with the value at 75% would be 768 x 768.
 
 ## Some things I think might be true, but haven't thoroughly tested:
-The inpainting upscale script is more sensitive to the quality of the upscaler used vs the SD upscale script due to inpainting using data from the unmasked areas.
-Considering the above, the original upscale script will usually create better details.
+The inpainting upscale script is more sensitive to the quality of the upscaler used vs the SD upscale script due to inpainting using data from the unmasked areas.  
+Considering the above, the original upscale script will usually create better details.  
 A decently high overlap value won't cause a style drift to occur sufficiently due to the tile pattern.
 
 ## Acknowledgements
