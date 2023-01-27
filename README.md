@@ -4,30 +4,30 @@ A script for [AUTOMATIC1111's Stable Diffusion WebUI](https://github.com/AUTOMAT
 This script always treats the image as tileable but it seems to handle non-tiling images just fine. That said, it will have a hard time making a non-tiling image tileable.
 
 ## Tiling Example vs SD Upscale Script
-Generated test image:
-![Original Comparison Image](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/01205-4174452299-a%20painting%20of%20a%20group%20of%20multicolored%20fish%2C%20ultrasharp%2C%20high%20contrast.jpeg)
+Generated test image:  
+![Original Comparison Image](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/01205-4174452299-a%20painting%20of%20a%20group%20of%20multicolored%20fish%2C%20ultrasharp%2C%20high%20contrast.jpeg)  
 >"a painting of a group of multicolored fish, ultrasharp, high contrast", DPM++ 2M Karras, 512 x 512, cfg 3, 10 steps, tiling enabled, sd-v1-5-inpainting.ckpt
 
-The images below all show the image shifted so that the corners meet in the middle.
-The following two images use the settings: 
+The images below all show the image shifted so that the corners meet in the middle.  
+The following two images use the settings:  
 >640 x 640, cfg 5, denoising .2, 4x_foolhardy_Remacri upscaler.
 
-The rest are their defaults.
-SD Upscale
+The rest are their defaults.  
+SD Upscale  
 ![Original Script, Denoising .2](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/original_2.jpeg)
-SD Inpaint Upscale
+SD Inpaint Upscale  
 ![Inpaint Script, Denoising .2](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/inpaint_2.jpeg)
-The final two have the denoising cranked up to .9 to exacerbate the differences.
-SD Upscale
+The final two have the denoising cranked up to .9 to exacerbate the differences.  
+SD Upscale  
 ![Original Script, Denoising .9](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/original_9.jpeg)
-SD Inpaint Upscale
+SD Inpaint Upscale  
 ![Inpaint Script, Denoising .9](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/inpaint_9.jpeg)
 
 ## How It Works
-This script will upscale the image then process smaller parts of the image one at a time, similar to the original upscale script. In addition, it will extend the edges with the opposite side of the image for context, cropping when finished.
-The pattern in which the tiles are processed is different. Since inpainting depends on what is around it, changing a piece that contains already changed regions can lead to over-changing in certain areas.
-This script uses the following pattern to help mitigate that:
-![Tile Processing Pattern](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/tile_pattern_80.png)
+This script will upscale the image then process smaller parts of the image one at a time, similar to the original upscale script. In addition, it will extend the edges with the opposite side of the image for context, cropping when finished.  
+The pattern in which the tiles are processed is different. Since inpainting depends on what is around it, changing a piece that contains already changed regions can lead to over-changing in certain areas.  
+This script uses the following pattern to help mitigate that:  
+![Tile Processing Pattern](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/tile_pattern_80.png)  
 In the image above, red is first, blue is second, and the greens are last. The brighter parts represent what is inpainted while the darker parts represent the borders of the tiles. This is an example of 80px borders with a 512 x 512 tile size on a 1024 x 1024 image, resulting in 16px of overlap for the inpainted areas.
 
 ## Usage
@@ -36,21 +36,21 @@ A couple of options external to the script that need to be set:
 * Select an inpainting model
 * Set "Inpaint area" to "Whole picture"
 
-No attempt was made to incorporate support for batch size or batch count. 
-"Tiling" doesn't need to be on
-It is probably a good idea to have "Inpaint masked" turned on.
-High denoising values will work and the processed tiles should blend seamlessly.
+No attempt was made to incorporate support for batch size or batch count.  
+"Tiling" doesn't need to be on.  
+It is probably a good idea to have "Inpaint masked" turned on.  
+High denoising values will work and the processed tiles should blend seamlessly.  
 
 ### Upscaler
-If none is selected, it is possible to do an inpainting-only pass.
-Use an upscaler that doesn't remove too much fine detail.
+If none is selected, it is possible to do an inpainting-only pass.  
+Use an upscaler that doesn't remove too much fine detail.  
 Upscaler Resources:
 &emsp;[](https://phhofm.github.io/upscale/favorites.html)
 &emsp;[](https://upscale.wiki/wiki/Model_Database#Universal_Models)
 
 ### Minimum Border
-This is the border of the tiles that will be processed.
-![80px Border Example](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/border_80.png)
+This is the border of the tiles that will be processed.  
+![80px Border Example](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/border_80.png)  
 A higher minimum value will make the inpainted area look more like the rest of the image. The higher it is, the more tiles that will potentially need to be processed, and the longer it will take if that is the case. The minimum should probably be at least 16.
 
 ### Maximum Inpaint Overlap
@@ -88,7 +88,7 @@ Upscales the image the amount of times specified here before doing an SD inpaint
 
 #### SD Inpaint Iterations
 This was made to automate the successive upscale of an image.
-The value is the amount of times the script will do the upscales then SD inpainting. Therefore, the final image size (not counting the final upscales or downscaling) will be:
+The value is the amount of times the script will do the upscales then SD inpainting. Therefore, the final image size (not counting the final upscales or downscaling) will be:  
 `Original width or height *2^(upscaling iterations * SD inpaint iterations)`
 Example of starting with a 768x512 image and setting upscaling iterations to 2 and SD inpaint iterations to 3:
 * 768 x 512    base
