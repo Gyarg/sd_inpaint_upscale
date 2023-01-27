@@ -1,6 +1,6 @@
 # SD Inpaint Upscale
 
-A script for [AUTOMATIC1111's Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that works in a similar way to the built-in SD Upscale script, except it supports tiling and is made to work with and only with inpainting.
+A script for [AUTOMATIC1111's Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that works in a similar way to the built-in SD Upscale script, except it supports tiling and is made to work with and only with inpainting.  
 This script always treats the image as tileable but it seems to handle non-tiling images just fine. That said, it will have a hard time making a non-tiling image tileable.
 
 ## Tiling Example vs SD Upscale Script
