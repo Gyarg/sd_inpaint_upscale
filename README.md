@@ -67,7 +67,7 @@ This was included as a potential way to add detail. It isn't thoroughly tested.
 
 ### Sharpen
 Implements the PIL ImageEnhance Sharpen method where 0 is blurry, 1 is unaltered, and 2 is sharp. It allows higher and lower values. The image is sharpened after it is upscaled but before the inpainting pass.
----
+
 ### Hidden Options
 Usually undesirable. To unhide, open sd_inpaint_upscale_tile.py and remove the `visible=False` from their respective parts in the `def_ui` section near the top. There is also a part near the top of the `def_run` section that adds metadata. Remove the `#` before it to allow it to be written.
 
@@ -89,7 +89,7 @@ Upscales the image the amount of times specified here before doing an SD inpaint
 #### SD Inpaint Iterations
 This was made to automate the successive upscale of an image.
 The value is the amount of times the script will do the upscales then SD inpainting. Therefore, the final image size (not counting the final upscales or downscaling) will be:  
-`Original width or height *2^(upscaling iterations * SD inpaint iterations)`
+`Original width or height *2^(upscaling iterations * SD inpaint iterations)`  
 Example of starting with a 768x512 image and setting upscaling iterations to 2 and SD inpaint iterations to 3:
 * 768 x 512    base
 * 1,536 x 1,024    upscaled
