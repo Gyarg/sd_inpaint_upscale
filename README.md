@@ -3,6 +3,13 @@
 A script for [AUTOMATIC1111's Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) that works in a similar way to the built-in SD Upscale script, except it supports tiling and is made to work with and only with inpainting.  
 This script always treats the image as tileable but it seems to handle non-tiling images just fine. That said, it will have a hard time making a non-tiling image tileable.
 
+## Updates
+
+* 2023-02-01 A couple bug fixes.  
+  - If SD Inpaint Iterations was greater than 1, the denoising value would have been wrong after the first iteration.  
+  - The maximum border was too high before. Would only be a problem with a really high minimum border value.  
+* 2023-01-27 Initial Release
+
 ## Tiling Example vs SD Upscale Script
 Generated test image:  
 ![Original Comparison Image](https://github.com/Gyarg/sd_inpaint_upscale/blob/main/images/01205-4174452299-a%20painting%20of%20a%20group%20of%20multicolored%20fish%2C%20ultrasharp%2C%20high%20contrast.jpeg)  
