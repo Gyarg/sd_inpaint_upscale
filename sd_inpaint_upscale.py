@@ -82,7 +82,7 @@ class Script(scripts.Script):
         tile_h = p.height
         w = img.width
         h = img.height
-        max_border = min(tile_w,tile_h)-16
+        max_border = (min(tile_w,tile_h)>>1)-16
             
         if(upscaler.name != "None"): 
             p.extra_generation_params["SDIU Upscaler"] = upscaler.name
@@ -151,10 +151,10 @@ class Script(scripts.Script):
                 overlap_h = border_and_overlap[1]
                 
                 border = max(border_w,border_h)
-                if(border>tile_w):
-                    border = tile_w - 16
-                if(border>tile_h):
-                    border = tile_h - 16
+                if(border>tile_w>>1):
+                    border = (tile_w>>1) - 16
+                if(border>tile_h>>1):
+                    border = (tile_h>>1) - 16
                     
                 non_border_width = tile_w - (border*2)
                 rows = math.ceil(w/non_border_width)
@@ -439,7 +439,7 @@ class Script(scripts.Script):
                     if state.interrupted:
                         break
                     process_part(x,(h-(overlap_area/2.0))/offset_y,tile_w,overlap_area)
-                p.denoising_strength = .2
+                p.denoising_strength = original_denoising
                 p.height = tile_h
                 expanded_img.paste(expanded_img.crop((0,h,w,h+(overlap_area>>1))),(0,0))
                 expanded_img.paste(expanded_img.crop((w,h-(overlap_area>>1),w+(overlap_area>>1),h)),(0,h-(overlap_area>>1)))
